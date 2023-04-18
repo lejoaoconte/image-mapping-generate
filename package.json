@@ -1,0 +1,26 @@
+{
+  "name": "image-mapping-generate",
+  "version": "1.2.2",
+  "description": "A simple code to generate image mapper code to emails",
+  "main": "src/mapper.tsx",
+  "repository": "https://github.com/lejoaoconte/image-mapping-generate",
+  "author": "João Pedro Conte",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist .cache src/bundle",
+    "start": "yarn clean && tsc --outDir src/bundle; parcel src/index.html",
+    "build": "yarn clean && tsc && cp package.json README.md ./dist",
+    "publicate": "npm publish ./dist"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "parcel-bundler": "^1.12.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.4"
+  }
+}
