@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf dist .cache src/bundle src/mapper.js",
+    "clean": "rm -rf dist .cache src/bundle",
     "start": "yarn clean && tsc --outDir src/bundle; parcel src/index.html",
     "build": "yarn clean && tsc && cp package.json README.md ./dist",
     "publicate": "npm publish ./dist"
