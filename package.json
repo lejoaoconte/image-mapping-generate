@@ -1,6 +1,6 @@
 {
   "name": "image-mapping-generate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple code to generate image mapper code to emails",
   "main": "src/mapper.tsx",
   "repository": "https://github.com/lejoaoconte/image-mapping-generate",
