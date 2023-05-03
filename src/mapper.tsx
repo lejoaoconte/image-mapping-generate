@@ -11,11 +11,30 @@ interface coordsProps {
 
 interface MapperProps {
   URL: string;
+  inputStyles: React.CSSProperties;
+  buttonDeleteStyles: React.CSSProperties;
+  buttonSetStyles: React.CSSProperties;
+  buttonCopyStyles: React.CSSProperties;
+  setString: string;
+  deleteString: string;
+  copyString: string;
+  setHtml: (value: string) => void;
 }
 
-export function Mapper({ URL }: MapperProps) {
+export function Mapper({
+  URL,
+  inputStyles,
+  buttonDeleteStyles,
+  buttonSetStyles,
+  buttonCopyStyles,
+  setString,
+  deleteString,
+  copyString,
+  setHtml,
+}: MapperProps) {
   const [coords, setCoords] = React.useState<coordsProps[]>([]);
   const [actualId, setActualId] = React.useState<string>("");
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
 
   function randomId() {
     const maxDate = Date.now();
@@ -107,7 +126,7 @@ export function Mapper({ URL }: MapperProps) {
     setActualId("");
   }
 
-  function handleSetURLValue(id: string, index: number) {
+  function setUrlValues(id: string, index: number) {
     const input = document.querySelectorAll(
       ".url-area"
     ) as NodeListOf<HTMLInputElement>;
@@ -123,24 +142,53 @@ export function Mapper({ URL }: MapperProps) {
     );
   }
 
-  function handleDeleteArea(id: string) {
+  function deleteArea(id: string) {
     setCoords((state) => state.filter((obj) => obj.id !== id));
   }
 
+  function handleImageLoad(
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) {
+    const { width, height } = event.currentTarget;
+    setDimensions({ width, height });
+  }
+
   function renderURLSetter() {
-    return coords.map((coord, index) => {
-      if (coord.x2 - coord.x1 > 20 && coord.y2 - coord.y1 > 20) {
-        return (
-          <div key={coord.id} className="url-setter">
-            <input type="text" name="url-area" className="url-area" />
-            <button onClick={() => handleSetURLValue(coord.id, index)}>
-              Set URL
-            </button>
-            <button onClick={() => handleDeleteArea(coord.id)}>Delete</button>
-          </div>
-        );
-      }
-    });
+    return (
+      <>
+        {coords.map((coord, index) => {
+          if (coord.x2 - coord.x1 > 20 && coord.y2 - coord.y1 > 20) {
+            return (
+              <div key={coord.id} className="url-setter">
+                <input
+                  style={inputStyles}
+                  type="text"
+                  name="url-area"
+                  className="url-area"
+                />
+                <button
+                  style={buttonSetStyles}
+                  onClick={() => setUrlValues(coord.id, index)}
+                >
+                  {setString}
+                </button>
+                <button
+                  style={buttonDeleteStyles}
+                  onClick={() => deleteArea(coord.id)}
+                >
+                  {deleteString}
+                </button>
+              </div>
+            );
+          }
+        })}
+        {
+          <button style={buttonCopyStyles} onClick={copyHtml}>
+            {copyString}
+          </button>
+        }
+      </>
+    );
   }
 
   function renderHTMLArea() {
@@ -157,14 +205,23 @@ export function Mapper({ URL }: MapperProps) {
           }}
         >
           <div id="select-area" className="selected-area" />
-          <img src={URL} />
+          <div
+            style={{
+              background: `URL("${URL}")`,
+              width: dimensions.width,
+              height: dimensions.height,
+              maxWidth: 800,
+              maxHeight: (800 * dimensions.height) / dimensions.width,
+              backgroundSize: "contain",
+            }}
+          />
           {renderCoords()}
         </div>
       </div>
     );
   }
 
-  function handleCopyhtml() {
+  function copyHtml() {
     let html = `<img src="${URL}" usemap="#image-map">`;
     html += `<map name="image-map">`;
     coords.map((coord) => {
@@ -173,14 +230,14 @@ export function Mapper({ URL }: MapperProps) {
       }
     });
     html += `</map>`;
-    console.log(html);
+    setHtml(html);
   }
 
   return (
     <div style={{ margin: 0, padding: 0, boxSizing: "border-box" }}>
       {renderHTMLArea()}
       {renderURLSetter()}
-      <button onClick={handleCopyhtml}>Copy HTML</button>
+      <img src={URL} onLoad={handleImageLoad} hidden />
     </div>
   );
 }

@@ -4,3 +4,7 @@ src/bundle
 dist/index.html
 dist/index.js
 dist/index.d.ts
+src/App.tsx
+src/index.tsx
+src/mapper.js
+src/index.html
