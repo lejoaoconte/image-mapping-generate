@@ -1,9 +1,14 @@
-# [En] Image Mapping Generate
-<img src="https://camo.githubusercontent.com/e8e44ca3a83f1593b9280f94dd5f463adc21727636dc028e2ff7fea42e5b4faf/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f72656163742d746f6173746966792e7376673f6c6162656c3d2546302539462539332539436c6963656e7365267374796c653d666f722d7468652d6261646765" alt="NPM" data-canonical-src="https://img.shields.io/npm/l/react-toastify.svg?label=%F0%9F%93%9Clicense&amp;style=for-the-badge" style="max-width: 100%;"/>
+# Image Mapping Generate
 
-<img src="">
+![LICENSE](https://img.shields.io/npm/l/image-mapping-generate.svg?label=%F0%9F%93%9Clicense&style=for-the-badge)
+![version](https://img.shields.io/npm/v/image-mapping-generate.svg?style=for-the-badge)
 
-This library is a simple mapping generator to create mapping of points on images, or in other words, if you wanna mapping points on image to send it at email for example you could use this component in your React application to do it. This is a web react component in version 2.0.0 and with Typescript.
+<figure>
+    <img src="https://github.com/lejoaoconte/image-mapping-generate/blob/main/images/demonstration.gif?raw=true" alt="Demonstration" />
+    <figcaption style="margin: 0 auto; text-align:center; font-size: 12px; color: #fff; background: rgba(0,0,0,0.7)">Usage demonstration</figcaption>
+</figure>
+
+This library is a simple mapping generator to create mapping of points on images, or in other words, if you wanna mapping points on image to send it at email for example you could use this component in your React application to do it. This is a web react component in version 2.0.0 and with Typescript. ✈️
 
 ## Instalation
 
@@ -12,7 +17,7 @@ This library is a simple mapping generator to create mapping of points on images
     yarn add image-mapping-generate
 ```
 
-## Basic use
+## Basic usage
 
 ```javascript
     import { useEffect, useState } from "react";
@@ -42,3 +47,7 @@ This library is a simple mapping generator to create mapping of points on images
 
     export default App;
 ```
+
+## License
+
+Licensed under MIT
