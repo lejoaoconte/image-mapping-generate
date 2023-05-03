@@ -4,3 +4,4 @@ build
 dist
 src/bundle
 yarn-error.log
+src/mapper.js
